@@ -1,0 +1,13 @@
+source_field,target_table,target_column,transformation,validation
+dms_orig,fact_freight_flow,origin_zone_code,Cast to text and left-pad to three characters,Non-null and matched to dim_zone
+dms_dest,fact_freight_flow,destination_zone_code,Cast to text and left-pad to three characters,Non-null and matched to dim_zone
+sctg2,fact_freight_flow,commodity_code,Cast to text and left-pad to two characters,Non-null and matched to dim_commodity
+dms_mode,fact_freight_flow,mode_code,Cast to integer,Non-null and matched to dim_mode
+trade_type,fact_freight_flow,trade_type_code,Cast to integer,Non-null and matched to dim_trade_type
+tons_2024/tons_2030/tons_2050,fact_freight_flow,tons_kilotons,Select years; sum source detail at model key,Nonnegative source value
+value_2024/value_2030/value_2050,fact_freight_flow,value_musd,Select years; sum source detail at model key,Nonnegative source value
+tmiles_2024/tmiles_2030/tmiles_2050,fact_freight_flow,tmiles_million,Select years; sum source detail at model key,Nonnegative source value
+FAF Zone Domestic workbook tab,dim_zone,zone_code and labels,Extract source-owned lookup,Unique key
+Commodity SCTG2 workbook tab,dim_commodity,commodity_code and label,Extract source-owned lookup,Unique key
+Mode workbook tab,dim_mode,mode_code and label,Extract source-owned lookup,Unique key
+Trade Type workbook tab,dim_trade_type,trade_type_code and label,Extract source-owned lookup,Unique key

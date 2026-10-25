@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "FreightFlow"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5b34c7b5-0458-4be1-b070-4d274f7ed5e4"
+  }
+}

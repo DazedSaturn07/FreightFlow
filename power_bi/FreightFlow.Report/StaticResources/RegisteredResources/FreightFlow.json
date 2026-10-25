@@ -1,0 +1,30 @@
+{
+  "name": "FreightFlow",
+  "dataColors": [
+    "#466D86",
+    "#A76542",
+    "#8F9C89",
+    "#9DB0BA",
+    "#D5B798"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#183349",
+  "tableAccent": "#466D86",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI",
+      "fontSize": 13,
+      "color": "#183349"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11,
+      "color": "#183349"
+    },
+    "callout": {
+      "fontFace": "Segoe UI",
+      "fontSize": 26,
+      "color": "#466D86"
+    }
+  }
+}

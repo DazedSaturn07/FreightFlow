@@ -1,0 +1,46 @@
+# Local environment and editor state
+.env
+.env.*
+.venv/
+.uv-cache/
+.idea/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.py[cod]
+**/node_modules/
+**/.pbi/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+.ssh/
+.aws/
+.codex/
+.agents/
+Thumbs.db
+Desktop.ini
+
+# Local learning notes: only these two Markdown documents are public.
+*.md
+!/README.md
+!/PROBLEM_AND_SOLUTION.md
+
+# Raw data and generated outputs
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+outputs/*
+!outputs/.gitkeep
+archive/
+graphify-out/
+*.pbix
+*.pbit
+# Rebuilt locally; includes the local DataFolder parameter.
+power_bi/FreightFlow.SemanticModel/model.bim
+*.xlsx.inspect.ndjson

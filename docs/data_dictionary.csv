@@ -1,0 +1,16 @@
+table,column,data_type,description,grain_or_key,null_policy
+fact_freight_flow,origin_zone_code,CHAR(3),Domestic FAF origin zone code,part of composite fact key,required
+fact_freight_flow,destination_zone_code,CHAR(3),Domestic FAF destination zone code,part of composite fact key,required
+fact_freight_flow,commodity_code,CHAR(2),SCTG2 commodity code,part of composite fact key,required
+fact_freight_flow,mode_code,SMALLINT,Domestic freight mode code,part of composite fact key,required
+fact_freight_flow,trade_type_code,SMALLINT,Domestic/import/export classification,part of composite fact key,required
+fact_freight_flow,year,SMALLINT,Baseline-estimate or source-forecast year,part of composite fact key,required
+fact_freight_flow,scenario_type,VARCHAR(30),Baseline estimate or Source forecast scenario,year context,required
+fact_freight_flow,tons_kilotons,DECIMAL(20;6),FAF tonnage in thousand tons,additive at fact grain,required nonnegative
+fact_freight_flow,value_musd,DECIMAL(20;6),FAF freight value in million current dollars,additive at fact grain,required nonnegative
+fact_freight_flow,tmiles_million,DECIMAL(20;6),FAF ton-miles in millions,additive at fact grain,required nonnegative
+dim_zone,zone_code,CHAR(3),Domestic FAF zone business key,primary key,required
+dim_commodity,commodity_code,CHAR(2),SCTG2 business key,primary key,required
+dim_mode,mode_code,SMALLINT,Domestic mode business key,primary key,required
+dim_trade_type,trade_type_code,SMALLINT,Trade type business key,primary key,required
+dim_year,year,SMALLINT,Year/scenario business key,primary key,required

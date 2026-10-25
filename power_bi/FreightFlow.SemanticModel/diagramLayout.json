@@ -1,0 +1,130 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 788.66519354745981,
+            "y": -50
+          },
+          "nodeIndex": "dim_commodity",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 342.36199641532608,
+            "y": -48.386306189054949
+          },
+          "nodeIndex": "dim_destination_zone",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 629.76628663278223,
+            "y": 605.4202416693488
+          },
+          "nodeIndex": "dim_lane",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 338.38231359590361,
+            "y": 808.40825912893888
+          },
+          "nodeIndex": "dim_mode",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 80.261277538047352,
+            "y": 161.51734367823224
+          },
+          "nodeIndex": "dim_origin_zone",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 626.71459110306341
+          },
+          "nodeIndex": "dim_trade_type",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 918.90949726709982,
+            "y": 197.07551849996617
+          },
+          "nodeIndex": "dim_year",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 628.92448116749085,
+            "y": 133.550465826886
+          },
+          "nodeIndex": "fact_freight_flow",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 339.8364155134451,
+            "y": 369.20772864105561
+          },
+          "nodeIndex": "mart_lane_priority",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

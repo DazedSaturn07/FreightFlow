@@ -1,0 +1,77 @@
+-- Additive metrics use the filtered fact. Ratios divide totals, never averages of ratios.
+Tonnage (ktons) =
+SUM ( fact_freight_flow[tons_kilotons] )
+
+Freight Value ($M) =
+SUM ( fact_freight_flow[value_musd] )
+
+Ton-Miles (M) =
+SUM ( fact_freight_flow[tmiles_million] )
+
+Mode Share =
+DIVIDE ( [Tonnage (ktons)], CALCULATE ( [Tonnage (ktons)], REMOVEFILTERS ( dim_mode ) ) )
+
+Value Density ($M/kton) =
+DIVIDE ( [Freight Value ($M)], [Tonnage (ktons)] )
+
+Baseline Tonnage =
+CALCULATE ( [Tonnage (ktons)], REMOVEFILTERS ( dim_year ), dim_year[year] = 2024 )
+
+Forecast Tonnage =
+CALCULATE ( [Tonnage (ktons)], REMOVEFILTERS ( dim_year ), dim_year[year] = 2050 )
+
+Scenario Growth =
+DIVIDE ( [Forecast Tonnage] - [Baseline Tonnage], [Baseline Tonnage] )
+
+Lane CAGR 2024-2050 =
+VAR StartValue = [Baseline Tonnage]
+VAR EndValue = [Forecast Tonnage]
+RETURN IF ( StartValue > 0 && EndValue > 0, POWER ( DIVIDE ( EndValue, StartValue ), 1 / 26 ) - 1 )
+
+Top 10 Lane Concentration =
+VAR Lanes = ADDCOLUMNS ( ALLSELECTED ( dim_lane ), "LaneTons", CALCULATE ( [Tonnage (ktons)] ) )
+VAR TopLanes = TOPN ( 10, Lanes, [LaneTons], DESC, dim_lane[lane_key], ASC )
+RETURN DIVIDE ( SUMX ( TopLanes, [LaneTons] ), CALCULATE ( [Tonnage (ktons)], ALLSELECTED ( dim_lane ) ) )
+
+Top 10 Commodity Concentration =
+VAR Commodities = ADDCOLUMNS ( ALLSELECTED ( dim_commodity ), "CommodityTons", CALCULATE ( [Tonnage (ktons)] ) )
+VAR TopCommodities = TOPN ( 10, Commodities, [CommodityTons], DESC, dim_commodity[commodity_code], ASC )
+RETURN DIVIDE ( SUMX ( TopCommodities, [CommodityTons] ), CALCULATE ( [Tonnage (ktons)], ALLSELECTED ( dim_commodity ) ) )
+
+Candidate Count =
+CALCULATE ( COUNTROWS ( mart_lane_priority ), KEEPFILTERS ( mart_lane_priority[tons_2024_kilotons] >= 1000 ), KEEPFILTERS ( mart_lane_priority[mode_code] >= 1 ), KEEPFILTERS ( mart_lane_priority[mode_code] <= 6 ) )
+
+Candidate Tonnage =
+CALCULATE ( SUM ( mart_lane_priority[tons_2024_kilotons] ), KEEPFILTERS ( mart_lane_priority[tons_2024_kilotons] >= 1000 ), KEEPFILTERS ( mart_lane_priority[mode_code] >= 1 ), KEEPFILTERS ( mart_lane_priority[mode_code] <= 6 ) )
+
+Candidate Forecast =
+CALCULATE ( SUM ( mart_lane_priority[tons_2050_kilotons] ), KEEPFILTERS ( mart_lane_priority[tons_2024_kilotons] >= 1000 ), KEEPFILTERS ( mart_lane_priority[mode_code] >= 1 ), KEEPFILTERS ( mart_lane_priority[mode_code] <= 6 ) )
+
+Candidate CAGR =
+VAR StartValue = [Candidate Tonnage]
+VAR EndValue = [Candidate Forecast]
+RETURN IF ( StartValue > 0 && EndValue > 0, POWER ( DIVIDE ( EndValue, StartValue ), 1 / 26 ) - 1 )
+
+High Growth Lane Index =
+CALCULATE ( MAX ( mart_lane_priority[high_growth_lane_index] ), KEEPFILTERS ( mart_lane_priority[tons_2024_kilotons] >= 1000 ), KEEPFILTERS ( mart_lane_priority[mode_code] >= 1 ), KEEPFILTERS ( mart_lane_priority[mode_code] <= 6 ) )
+
+Candidate Filter =
+IF ( [Candidate Count] > 0, 1, 0 )
+
+Valid Record Count =
+COUNTROWS ( fact_freight_flow )
+
+Tonnage (billion tons) =
+DIVIDE ( [Tonnage (ktons)], 1000000 )
+
+Freight Value ($T) =
+DIVIDE ( [Freight Value ($M)], 1000000 )
+
+Ton-Miles (T) =
+DIVIDE ( [Ton-Miles (M)], 1000000 )
+
+Baseline (billion tons) =
+DIVIDE ( [Baseline Tonnage], 1000000 )
+
+Forecast (billion tons) =
+DIVIDE ( [Forecast Tonnage], 1000000 )
